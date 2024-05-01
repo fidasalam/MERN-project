@@ -1,6 +1,6 @@
 # MERN Web Application with Admin Panel and Redux Toolkit
 
-This is a MERN (MongoDB, Express.js, React.js, Node.js) web application with an admin panel, implemented with Redux Toolkit for state management. The application allows users to sign up, log in, and view the home page. User data is stored in a database, and login is validated using JSON Web Tokens (JWT). The admin panel allows administrators to log in, view user data, search user data, and perform CRUD operations (Create, Read, Update, Delete) on user data. Sessions are handled using JWT.
+This is a MERN (MongoDB, Express.js, React.js, Node.js) web application with an admin panel, implemented with Redux Toolkit for state management. The application allows users to sign up, log in, and view the home page. User data is stored in a database, and login is validated using JSON Web Tokens (JWT). The admin panel allows administrators to log in, view user data, search user data, and perform CRUD operations (Create, Read, Update, Delete) on user data. Sessions are handled using JWT.The application uses API endpoints for communication between the frontend and backend.
 
 ## Features
 

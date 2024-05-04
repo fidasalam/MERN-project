@@ -1,7 +1,7 @@
 import { setUser, clearUser, setError } from './userSlice';
 import axios from 'axios';
 
-export const login = (userData) => async (dispatch) => {
+export const  login = (userData) => async (dispatch) => {
   try {
     const response = await axios.post('http://localhost:5000/api/users/login', userData);
     const { token } = response.data;

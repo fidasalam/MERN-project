@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import {About,Navbar,Contact,Home} from '../components/User/HomePage';
 import '../assets/css/maicons.css';
-// eslint-disable-next-line
 import '../assets/css/bootstrap.css'; 
 import '../assets/vendor/animate/animate.css'; 
 import '../assets/css/theme.css'; 

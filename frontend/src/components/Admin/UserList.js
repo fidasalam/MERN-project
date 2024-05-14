@@ -13,15 +13,24 @@ const UserList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/admin/home');
+                const adminToken = localStorage.getItem('adminToken');
+
+                const response = await axios.get('http://localhost:5000/api/admin/userList', {
+                    headers: {
+                        'x-auth-token': adminToken
+                    }
+                });
+                console.log(response)
                 setUsers(response.data.users);
             } catch (error) {
+                
                 console.error('Error fetching user data:', error);
             }
         };
-
+    
         fetchData();
     }, []);
+    
 
     // Function to handle search input change and fetch suggestions
     const handleSearchChange = async (e) => {

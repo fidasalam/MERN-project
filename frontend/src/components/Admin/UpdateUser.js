@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom'; // Import useParams hook
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 const UpdateUser = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         email: ''
     });
     const [message, setMessage] = useState(null);
-    
-    const { userId } = useParams(); // Use useParams to get userId
+    const { userId } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/admin/updateuser/${userId}`);
+                const adminToken = localStorage.getItem('adminToken');
+                const response = await axios.get(`http://localhost:5000/api/admin/updateuser/${userId}`, {
+                    headers: {
+                        'x-auth-token': adminToken
+                    }
+                });
                 const userData = response.data.user;
                 setFormData({
                     firstName: userData.firstName,
@@ -24,11 +31,13 @@ const UpdateUser = () => {
                 });
             } catch (error) {
                 console.error('Error fetching user data:', error);
+                navigate('/admin/adminLogin');
+                
             }
         };
 
         fetchData();
-    }, [userId]); // Use userId directly from useParams
+    }, );
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -38,22 +47,27 @@ const UpdateUser = () => {
         e.preventDefault();
 
         try {
+            const adminToken = localStorage.getItem('adminToken'); 
             await axios.post('http://localhost:5000/api/admin/updateuser', {
-                userId: userId, // Use userId directly
+                userId: userId,
                 ...formData
+            }, {
+                headers: {
+                    'x-auth-token': adminToken 
+                }
             });
             setMessage('User information updated successfully');
         } catch (error) {
             console.error('Error updating user information:', error);
-            setMessage('Error updating user information');
+        // Navigate to admin login page
         }
     };
 
     return (
-        <div className="container"> {/* Container to center the form */}
-            <div className="card1 mb-4 mt-3"> {/* Card */}
+        <div className="container">
+            <div className="card1 mb-4 mt-3">
                 <div className="card-header">
-                    <h3 className="mt-4 text-center">Update User</h3> {/* Centered heading */}
+                    <h3 className="mt-4 text-center">Update User</h3>
                 </div>
                 <div className="card-body">
                     <form onSubmit={handleSubmit}>
@@ -69,7 +83,7 @@ const UpdateUser = () => {
                             <label htmlFor="email" className="form-label">Email</label>
                             <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} required />
                         </div>
-                        <div className="d-grid gap-2"> {/* Centered button */}
+                        <div className="d-grid gap-2">
                             <button type="submit" className="btn btn-primary">Update</button>
                         </div>
                         {message && <div className={`alert ${message.startsWith('Error') ? 'alert-danger' : 'alert-success'} mt-3`} role="alert">{message}</div>}

@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController');
+const adminAuthMiddleware=require('../middleware/adminAuth')
 
 // Admin home route
-router.get('/home', adminController.adminHome);
+router.get('/userList', adminController.adminHome);
 
 
 //Admin Login
@@ -21,8 +22,8 @@ router.post('/suggestions', adminController.SearchSuggeston);
 router.post('/adduser', adminController.postAddUser);
 
 // Update user route
-router.get('/updateuser/:id', adminController.getUpdateUser);
-router.post('/updateuser', adminController.postUpdateUser);
+router.get('/updateuser/:id',adminAuthMiddleware, adminController.getUpdateUser);
+router.post('/updateuser',adminAuthMiddleware, adminController.postUpdateUser);
 
 
 

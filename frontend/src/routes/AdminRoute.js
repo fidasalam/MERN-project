@@ -7,24 +7,24 @@ import AddUser from '../components/Admin/AddUser';
 import UpdateUser from '../components/Admin/UpdateUser';
 import '../adminassets/css/styles.css';
 
-const AdminPage = () => {
+const AdminRoutes = () => {
   return (
     <Routes>
     
-      <Route path="/admin" element={<Dashboard />} />
-      <Route path="/admin/adminLogin" element={<AdminLogin />} />
-      <Route path="/admin/userList" element={<Dashboard />}>
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/adminLogin" element={<AdminLogin />} />
+      <Route path="/userList" element={<Dashboard />}>
         <Route index element={<UserList />} />
       </Route>
-      <Route path="/admin/addUser" element={<Dashboard />}>
+      <Route path="/addUser" element={<Dashboard />}>
         <Route index element={<AddUser />} />
       </Route>
 
-      <Route path="/admin/updateUser/:userId" element={<Dashboard />}>
+      <Route path="/updateUser/:userId" element={<Dashboard />}>
         <Route index element={<UpdateUser />} />
       </Route>
     </Routes>
   );
 };
 
-export default AdminPage;
+export default AdminRoutes;

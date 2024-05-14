@@ -9,7 +9,7 @@ import Login from '../components/User/Login';
 import SignUp from '../components/User/SignUp';
 import Layout from '../components/User/HomePage';
 
-const UserPage = () => {
+const UserRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />} />
@@ -22,4 +22,4 @@ const UserPage = () => {
   );
 };
 
-export default UserPage;
+export default UserRoutes;

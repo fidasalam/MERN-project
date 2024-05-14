@@ -13,6 +13,13 @@ app.use(bodyParser.json());
 
 app.use(cors({ origin: 'http://localhost:3000' }));
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+});
+
+
 // Routes
 app.use('/api/admin',adminRoutes)
 app.use('/api/users', userRoutes);

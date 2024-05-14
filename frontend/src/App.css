@@ -362,3 +362,8 @@ a:focus {
 .signup-form .message a {
   color: #fff;
 }
+/* ErrorPage.css */
+.error-container {
+  text-align: center;
+  margin-top: 50px; /* Optional: Adjust the margin for spacing */
+}

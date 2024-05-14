@@ -8,6 +8,7 @@ import '../assets/css/theme.css';
 import Login from '../components/User/Login';
 import SignUp from '../components/User/SignUp';
 import Layout from '../components/User/HomePage';
+import ErrorPage from '../components/ErrorPage';
 
 const UserRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const UserRoutes = () => {
       <Route path="/contact" element={<><Navbar/><Contact/></>} />
       <Route path="/signin" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 };
